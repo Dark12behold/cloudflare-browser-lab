@@ -1,0 +1,9 @@
+{
+  "schema":"BROWSER_LAB_SPECIMEN/1",
+  "id":"cake-welcome-001",
+  "visibility":"public",
+  "objects":["html","css","javascript"],
+  "behavior":["cake_button_visible","click_emits_confetti","welcome_scrolls_across_viewport","host_background_unchanged"],
+  "constraints":["dependency_free","native_button","reduced_motion_supported","no_secrets","no_private_reasoning","served_assets_isolated"],
+  "runtime_evidence_expected":["preview_url","http_200","visual_render","interaction_result"]
+}
