@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "coordinator",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-28",
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": { "enabled": true },
+  "services": [
+    { "binding": "CAPABILITIES", "service": "internal-capability" }
+  ]
+}
