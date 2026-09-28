@@ -7,6 +7,8 @@ on:
       - "public/**"
       - "shared/**"
       - "storage/**"
+      - "workflows/**"
+      - "tests/**"
       - ".github/workflows/validate-worker-topology.yml"
   workflow_dispatch:
 
@@ -89,3 +91,14 @@ jobs:
           assert envelope["additionalProperties"] is False
           print("contract shape: PASS")
           PY
+
+  chain-gauntlet:
+    name: CHAIN component and integration gauntlet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run train gauntlet
+        run: python tests/chain_train_gauntlet.py
