@@ -4,7 +4,7 @@ Five Cloudflare projects share this repository but have independent roots and au
 
 | Cloudflare project | Root directory | Role |
 |---|---|---|
-| labs | /workers/labs | disposable experimental host |
+| lab | /workers/labs | disposable experimental host |
 | browser-verifier | /workers/browser-verifier | browser/runtime evidence verifier |
 | internal-capability | /workers/internal-capability | private RPC capability router |
 | coordinator | /workers/coordinator | route/dependency/recovery coordinator |
@@ -18,7 +18,7 @@ Use build watch paths so a Worker rebuilds for its own directory plus shared dep
 ## Deployment order
 Because Service Binding targets must exist before callers deploy:
 1. internal-capability
-2. labs
+2. lab
 3. browser-verifier
 4. coordinator
 5. production-site
