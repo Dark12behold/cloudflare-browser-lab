@@ -1,7 +1,7 @@
 {
   "version": 1,
   "workers": {
-    "labs": {
+    "lab": {
       "logical_role": "lab-host",
       "authority": ["execute-disposable-experiments", "emit-runtime-evidence"],
       "denied": ["production-promotion", "production-data", "secret-disclosure"]
