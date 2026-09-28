@@ -83,7 +83,7 @@ jobs:
           learning = json.loads(Path("shared/contracts/learning-envelope-v1.json").read_text())
           envelope = json.loads(Path("shared/contracts/io-envelope-v1.json").read_text())
 
-          expected = {"labs","browser-verifier","internal-capability","coordinator","production-site"}
+          expected = {"lab","browser-verifier","internal-capability","coordinator","production-site"}
           assert set(roles["workers"]) == expected
           assert learning["canonical_changes"]["self_promotion_allowed"] is False
           assert envelope["additionalProperties"] is False
