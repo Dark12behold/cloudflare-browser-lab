@@ -1,0 +1,53 @@
+{
+  "contract": "CHAIN_TRACE/1",
+  "required": [
+    "trace_id",
+    "span_id",
+    "task_id",
+    "actor",
+    "stage",
+    "status",
+    "started_at",
+    "authority_ceiling"
+  ],
+  "optional": [
+    "parent_span_id",
+    "workflow_instance_id",
+    "capability_id",
+    "input_ref",
+    "output_ref",
+    "evidence_ref",
+    "retry_count",
+    "latency_ms",
+    "error_class",
+    "next_stage"
+  ],
+  "stages": [
+    "scheduled",
+    "workflow_started",
+    "inspect",
+    "plan",
+    "execute",
+    "verify",
+    "record",
+    "decide",
+    "complete"
+  ],
+  "status": [
+    "started",
+    "success",
+    "degraded",
+    "blocked",
+    "retryable_failure",
+    "permanent_failure"
+  ],
+  "rules": [
+    "trace_id persists across the entire train",
+    "each hop creates a new span_id",
+    "parent_span_id links child work to its caller",
+    "authority_ceiling may stay equal or narrow but never expand downstream",
+    "retry increments retry_count and does not create a new task_id",
+    "verification emits its own independent span",
+    "promotion is not a trace status and requires separate authorization"
+  ]
+}
