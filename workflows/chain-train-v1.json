@@ -1,0 +1,27 @@
+{
+  "pattern": "CHAIN_TRAIN/1",
+  "trigger": {
+    "actor": "lab",
+    "event": "chain.tick"
+  },
+  "workflow": {
+    "name": "chain-train",
+    "steps": [
+      {"id":"inspect","owner":"coordinator","purpose":"recover pending work and dependency state","on_failure":"record-and-block"},
+      {"id":"plan","owner":"coordinator","purpose":"select Minimum Trustworthy Path within caller authority","on_failure":"record-and-block"},
+      {"id":"execute","owner":"internal-capability","purpose":"execute smallest validated capability/tool","on_failure":"bounded-retry"},
+      {"id":"verify","owner":"browser-verifier","purpose":"independently test behavioral contract when browser/runtime verification applies","on_failure":"return-to-decide"},
+      {"id":"record","owner":"coordinator","purpose":"normalize evidence and update bounded operational statistics","on_failure":"retry-record-only"},
+      {"id":"decide","owner":"coordinator","purpose":"complete, retry, block, or create improvement candidate","on_failure":"block"}
+    ]
+  },
+  "trace_contract": "shared/contracts/chain-trace-v1.json",
+  "learning_contract": "shared/contracts/learning-envelope-v1.json",
+  "invariants": [
+    "scheduler starts work but does not authorize it",
+    "workflow persists execution but does not promote logic",
+    "coordinator routes but does not self-authorize",
+    "executor cannot validate its own success when independent verification is required",
+    "evidence may update bounded statistics but cannot silently change canonical logic"
+  ]
+}
