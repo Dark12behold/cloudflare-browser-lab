@@ -1,0 +1,28 @@
+{
+  "schema": "SITE_ASSET/1",
+  "asset_id": "metatextum.coming-soon.hero.v1",
+  "logical_parent": "production-site/coming-soon",
+  "current_source": "public/assets/metatextum-coming-soon.webp",
+  "target_storage": {
+    "kind": "r2",
+    "object_key": "production-site/coming-soon/v1/metatextum-coming-soon.webp",
+    "binding": "SITE_ASSETS_R2",
+    "status": "unbound"
+  },
+  "metadata_store": {
+    "kind": "d1",
+    "record_key": "metatextum.coming-soon.hero.v1",
+    "status": "unbound"
+  },
+  "dimensions": {
+    "width": 1536,
+    "height": 864
+  },
+  "content_type": "image/webp",
+  "provenance": "user-approved uploaded image",
+  "rules": [
+    "binary_object_in_r2",
+    "metadata_reference_in_d1",
+    "git_asset_is_deployment_fallback_until_r2_binding_verified"
+  ]
+}
