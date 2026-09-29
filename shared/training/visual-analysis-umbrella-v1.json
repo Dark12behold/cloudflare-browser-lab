@@ -189,5 +189,15 @@
       "provenance-preserved"
     ],
     "self_promotion": false
+  },
+  "specialist_competency_model": {
+    "matrix_ref": "shared/training/visual-competency-matrix-v1.json",
+    "rule": "The umbrella coordinates analysis and transfer; specialist tracks retain distinct competencies and success criteria.",
+    "selection": "problem -> required competencies -> minimum compatible composition -> execution -> evidence -> composition score",
+    "prohibitions": [
+      "generic_visual_expert_assumption",
+      "source_specialty_inferred_from_transferred_principle",
+      "authority_inferred_from_competency"
+    ]
   }
 }
