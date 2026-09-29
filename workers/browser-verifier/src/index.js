@@ -1,7 +1,6 @@
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    if (url.pathname === "/health") return Response.json({ worker: "browser-verifier", role: "evidence-verifier", status: "ok" });
-    return Response.json({ worker: "browser-verifier", role: "evidence-verifier", status: "ready", mutation_authority: false, note: "Browser Run binding intentionally not declared until resource binding is verified." });
-  }
-};
+const ack=(task_id,state,extra={})=>({contract:"CONFIRMATION/1",task_id,state,worker:"browser-verifier",at:new Date().toISOString(),...extra});
+export default{async fetch(request){const url=new URL(request.url);
+if(url.pathname==="/health")return Response.json({worker:"browser-verifier",role:"evidence-verifier",status:"ok",confirmation:"CONFIRMATION/1"});
+if(url.pathname==="/confirm"&&request.method==="POST"){const v=await request.json().catch(()=>null);if(!v?.task_id)return Response.json(ack("unknown","BLOCKED",{reason:"missing_task_id"}),{status:400});return Response.json(ack(v.task_id,"RECEIVED",{next:"verify",expected_event:"STARTED"}));}
+if(url.pathname==="/verify"&&request.method==="POST"){const v=await request.json().catch(()=>null);if(!v?.evidence)return Response.json(ack(v?.task_id??"unknown","UNRESOLVED",{reason:"evidence_not_observed",false_success_prevented:true}));return Response.json(ack(v.task_id,"VERIFIED",{evidence_ref:v.evidence}));}
+return Response.json({worker:"browser-verifier",role:"evidence-verifier",status:"ready",mutation_authority:false,note:"Browser Run binding intentionally not declared until resource binding is verified."});}};
