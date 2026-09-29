@@ -1,0 +1,8 @@
+{
+  "schema": "CF_PREVIEW_REPAIR_PROBE/1",
+  "target": "lab",
+  "purpose": "Retrigger Cloudflare after Lab non-production deploy command workaround.",
+  "expected_root": "workers/labs",
+  "expected_route": "/ui/browser",
+  "mutation": "evidence-only"
+}
