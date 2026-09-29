@@ -1,0 +1,78 @@
+{
+  "$id": "topology-observation-v1",
+  "type": "object",
+  "required": [
+    "task_id",
+    "observer",
+    "movement",
+    "evidence_class",
+    "outcome"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "observer": {
+      "type": "string"
+    },
+    "workload_class": {
+      "type": "string"
+    },
+    "movement": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from",
+          "to",
+          "transport"
+        ],
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "transport": {
+            "type": "string"
+          },
+          "capability": {
+            "type": "string"
+          },
+          "binding": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evidence_class": {
+      "enum": [
+        "direct_control",
+        "indirect_control",
+        "direct_observation",
+        "indirect_observation",
+        "inferred_behavior"
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "success",
+        "failure",
+        "unresolved"
+      ]
+    },
+    "candidate_improvement": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
