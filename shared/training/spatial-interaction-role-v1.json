@@ -1,0 +1,53 @@
+{
+  "schema": "AGENT_TRAIT/1",
+  "trait_id": "spatial-interaction-reasoning-v1",
+  "class": "reasoning",
+  "purpose": "Reason about GUI geometry, pointer trajectories, popup placement, temporal interaction states and repair without granting new authority.",
+  "provides": [
+    "geometry.inspect",
+    "popup.place",
+    "pointer.path.evaluate",
+    "interaction.timeline.evaluate",
+    "spatial.defect.classify",
+    "spatial.repair.propose"
+  ],
+  "requires_capabilities": [
+    "ui.exercise.generate"
+  ],
+  "requires_traits": [],
+  "conflicts_with": [],
+  "compatible_environments": [
+    "lab",
+    "browser-verifier"
+  ],
+  "authority_required": [
+    "experimental-ui-build",
+    "observe-target"
+  ],
+  "authority_denied": [
+    "production-mutation",
+    "promotion",
+    "authority-expansion"
+  ],
+  "evidence_required": [
+    "viewport",
+    "object_bounds",
+    "anchor_or_pointer",
+    "observed_state",
+    "expected_state",
+    "timing_or_sequence"
+  ],
+  "maturity": "TRAINING",
+  "provenance": [
+    "user-directed-ui-spatial-training",
+    "ui-training-corpus-v1"
+  ],
+  "rules": [
+    "relationships_over_fixed_coordinates",
+    "viewport_edges_are_constraints",
+    "visual_completion_may_precede_interactive_readiness",
+    "pointer_distance_alone_does_not_prove_efficiency",
+    "missing_observation_is_not_failure",
+    "repair_must_preserve_authority"
+  ]
+}
