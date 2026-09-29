@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "workers": {
+    "lab": {
+      "logical_role": "lab-host",
+      "authority": ["execute-disposable-experiments", "emit-runtime-evidence"],
+      "denied": ["production-promotion", "production-data", "secret-disclosure"]
+    },
+    "browser-verifier": {
+      "logical_role": "evidence-verifier",
+      "authority": ["observe-target", "execute-bounded-browser-tests", "emit-evidence"],
+      "denied": ["source-mutation", "deployment-promotion", "production-data-mutation"]
+    },
+    "internal-capability": {
+      "logical_role": "capability-router",
+      "authority": ["execute-validated-capabilities"],
+      "denied": ["broad-intent-reinterpretation", "authority-escalation", "public-http-by-default"]
+    },
+    "coordinator": {
+      "logical_role": "route-and-recovery",
+      "authority": ["classify", "close-dependencies", "route", "recover-within-caller-ceiling"],
+      "denied": ["self-authorize", "silent-production-promotion"]
+    },
+    "production-site": {
+      "logical_role": "public-product-surface",
+      "authority": ["serve-approved-assets", "invoke-approved-internal-capabilities"],
+      "denied": ["experimental-capabilities", "private-logic-bank-access", "infrastructure-mutation"]
+    }
+  }
+}

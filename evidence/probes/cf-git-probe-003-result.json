@@ -1,0 +1,47 @@
+{
+  "schema": "CLOUDFLARE_GIT_PROBE_RESULT/1",
+  "probe_id": "cf-git-probe-003",
+  "stimulus_commit": "b37925336ff1c211821bbf1cdfc6720f10aec904",
+  "branch": "setup/worker-topology-v1",
+  "observations": [
+    {
+      "boundary": "github_actions",
+      "initial": "NOT_YET_OBSERVED",
+      "later": "SUCCESS",
+      "run_id": 36507118953,
+      "run_number": 23,
+      "note": "All reported jobs passed including five Worker Wrangler dry-runs, contracts, runtime-memory schema and CHAIN gauntlet."
+    },
+    {
+      "boundary": "cloudflare/internal-capability",
+      "state": "FAILED",
+      "observed_at": "2026-09-29T01:16:56.004Z",
+      "evidence": "Cloudflare bot PR deployment table",
+      "deployment_url": false
+    },
+    {
+      "boundary": "cloudflare/cloudflare-browser-lab",
+      "state": "FAILED",
+      "observed_at": "2026-09-29T01:17:30.352Z",
+      "evidence": "Cloudflare bot PR deployment table",
+      "deployment_url": false
+    },
+    {
+      "boundary": "cloudflare/browser-verifier",
+      "state": "WORKING",
+      "raw_state": "In progress",
+      "observed_at": "2026-09-29T01:17:34.285Z",
+      "evidence": "Cloudflare bot PR deployment table"
+    }
+  ],
+  "conclusions": [
+    "Git-to-GitHub-Actions path is active.",
+    "Git-to-Cloudflare path is active.",
+    "Immediate absence of a workflow run was a timing false negative.",
+    "Cloudflare targets progress asynchronously and must be tracked independently.",
+    "Explicit Cloudflare build failures are real failures, but their exact causes remain unresolved without build logs.",
+    "GitHub Wrangler dry-run success plus Cloudflare build failure localizes investigation toward the Cloudflare build/configuration boundary rather than proving Worker source logic failure."
+  ],
+  "promotion": "BLOCKED",
+  "production_mutation": false
+}

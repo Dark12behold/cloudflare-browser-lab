@@ -1,0 +1,142 @@
+{
+  "schema": "TOOLKIT_REGISTRY/1",
+  "registry_id": "shared-agent-worker-tools-v1",
+  "rules": [
+    "tool_definition_is_not_authority",
+    "availability_requires_profile_match",
+    "execution_requires_current_authority",
+    "generated_tool_starts_experimental",
+    "consumer_validates_output",
+    "evidence_required_for_promotion",
+    "prefer_shared_tool_over_duplicate_implementation"
+  ],
+  "tools": [
+    {
+      "id": "contract.validate",
+      "kind": "deterministic",
+      "provides": [
+        "schema-validation",
+        "required-field-check"
+      ],
+      "competencies": [
+        "software-systems.testing"
+      ],
+      "risk": "low"
+    },
+    {
+      "id": "authority.check",
+      "kind": "deterministic",
+      "provides": [
+        "authority-subset-check",
+        "denial-check"
+      ],
+      "competencies": [
+        "software-systems.security"
+      ],
+      "risk": "high"
+    },
+    {
+      "id": "observation.classify",
+      "kind": "deterministic",
+      "provides": [
+        "FAILED",
+        "NOT_OBSERVED",
+        "NOT_ACTIVATED",
+        "BLOCKED",
+        "UNRESOLVED"
+      ],
+      "competencies": [
+        "software-systems.failure-recovery"
+      ],
+      "risk": "low"
+    },
+    {
+      "id": "popup.place",
+      "kind": "deterministic",
+      "provides": [
+        "viewport-aware-placement",
+        "edge-flip",
+        "collision-padding"
+      ],
+      "competencies": [
+        "ui-interaction.spatial-layout",
+        "ui-interaction.menus-overlays"
+      ],
+      "risk": "low"
+    },
+    {
+      "id": "pointer.path.measure",
+      "kind": "deterministic",
+      "provides": [
+        "path-length",
+        "trajectory-order"
+      ],
+      "competencies": [
+        "ui-interaction.pointer-touch-keyboard"
+      ],
+      "risk": "low"
+    },
+    {
+      "id": "interaction.timeline.verify",
+      "kind": "deterministic",
+      "provides": [
+        "event-order",
+        "visual-vs-interactive-readiness"
+      ],
+      "competencies": [
+        "graphics-rendering.temporal-continuity",
+        "ui-interaction.perceived-responsiveness"
+      ],
+      "risk": "low"
+    },
+    {
+      "id": "work.profile.compile",
+      "kind": "compiler",
+      "provides": [
+        "required-competencies",
+        "required-capabilities",
+        "evidence-plan",
+        "uncovered-requirements"
+      ],
+      "competencies": [
+        "software-systems.architecture"
+      ],
+      "risk": "medium"
+    },
+    {
+      "id": "toolkit.resolve",
+      "kind": "compiler",
+      "provides": [
+        "minimum-compatible-toolset",
+        "denied-tools",
+        "missing-tools"
+      ],
+      "competencies": [
+        "software-systems.architecture",
+        "software-systems.security"
+      ],
+      "risk": "high"
+    },
+    {
+      "id": "evidence.packet.build",
+      "kind": "deterministic",
+      "provides": [
+        "provenance",
+        "correlation",
+        "expected-vs-observed"
+      ],
+      "competencies": [
+        "software-systems.testing"
+      ],
+      "risk": "low"
+    }
+  ],
+  "lifecycle": [
+    "CANDIDATE",
+    "SANDBOXED",
+    "GAUNTLET_VALIDATED",
+    "PROFILE_ELIGIBLE",
+    "PREFERRED",
+    "DEPRECATED"
+  ]
+}

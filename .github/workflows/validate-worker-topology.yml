@@ -1,0 +1,108 @@
+name: Validate Worker Topology
+
+on:
+  pull_request:
+    paths:
+      - "workers/**"
+      - "public/**"
+      - "shared/**"
+      - "storage/**"
+      - "workflows/**"
+      - "tests/**"
+      - ".github/workflows/validate-worker-topology.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wrangler-dry-run:
+    name: dry-run ${{ matrix.worker }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        worker:
+          - labs
+          - browser-verifier
+          - internal-capability
+          - coordinator
+          - production-site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Wrangler compile/config validation
+        run: npx --yes wrangler@4 deploy --dry-run --config "workers/${{ matrix.worker }}/wrangler.jsonc" --outdir ".dry-run/${{ matrix.worker }}"
+
+  storage-contract:
+    name: validate runtime memory schema
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Apply and exercise schema
+        run: |
+          python - <<'PY'
+          import sqlite3
+          from pathlib import Path
+
+          schema = Path("storage/runtime-memory-v1.sql").read_text()
+          db = sqlite3.connect(":memory:")
+          db.executescript(schema)
+          db.execute("""
+            INSERT INTO worker_observations
+              (observation_id, worker_role, outcome, verified)
+            VALUES (?, ?, ?, ?)
+          """, ("selftest-1", "coordinator", "success", 1))
+          row = db.execute("""
+            SELECT worker_role, outcome, verified
+            FROM worker_observations
+            WHERE observation_id = ?
+          """, ("selftest-1",)).fetchone()
+          assert row == ("coordinator", "success", 1), row
+          print("runtime-memory-v1 schema: PASS")
+          PY
+
+  contract-shape:
+    name: validate JSON contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Parse and check required invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          roles = json.loads(Path("shared/contracts/worker-roles.json").read_text())
+          learning = json.loads(Path("shared/contracts/learning-envelope-v1.json").read_text())
+          envelope = json.loads(Path("shared/contracts/io-envelope-v1.json").read_text())
+
+          expected = {"lab","browser-verifier","internal-capability","coordinator","production-site"}
+          assert set(roles["workers"]) == expected
+          assert learning["canonical_changes"]["self_promotion_allowed"] is False
+          assert envelope["additionalProperties"] is False
+          print("contract shape: PASS")
+          PY
+
+  chain-gauntlet:
+    name: CHAIN component and integration gauntlet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run train gauntlet
+        run: python tests/chain_train_gauntlet.py
+      - name: Run spatial UI interaction gauntlet
+        run: python tests/ui/spatial_interaction_gauntlet.py
+      - name: Run shared toolkit gauntlet
+        run: python tests/toolkits/toolkit_gauntlet.py

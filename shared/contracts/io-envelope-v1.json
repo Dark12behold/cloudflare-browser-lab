@@ -1,0 +1,13 @@
+{
+  "$id": "io-envelope-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["task_id", "contract_version", "input", "authority"],
+  "properties": {
+    "task_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "contract_version": { "const": 1 },
+    "input": {},
+    "authority": { "type": "array", "items": { "type": "string" }, "maxItems": 32 },
+    "provenance": { "type": "array", "items": { "type": "string" }, "maxItems": 64 }
+  }
+}

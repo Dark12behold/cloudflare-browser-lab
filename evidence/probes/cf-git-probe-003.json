@@ -1,0 +1,14 @@
+{
+  "schema": "CLOUDFLARE_GIT_PROBE/1",
+  "probe_id": "cf-git-probe-003",
+  "purpose": "Trigger connected Cloudflare preview/build path from experimental branch and observe external status propagation.",
+  "branch": "setup/worker-topology-v1",
+  "safe": true,
+  "production_mutation": false,
+  "expected": [
+    "git_commit_observed",
+    "cloudflare_build_or_preview_status",
+    "no_failure_inferred_from_silence"
+  ],
+  "observation_state": "STIMULUS_EMITTED"
+}

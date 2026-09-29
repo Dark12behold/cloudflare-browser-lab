@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "scheduler": {
+    "host": "lab",
+    "default_cron": "*/15 * * * *",
+    "time_basis": "UTC",
+    "purpose": "Emit bounded CHAIN heartbeat/tick events that may initiate inspection, maintenance, evidence aggregation, or coordinator work.",
+    "authority": ["schedule", "emit-heartbeat"],
+    "denied": ["promote", "production-mutation", "authority-expansion"]
+  },
+  "train_model": {
+    "clock": "lab",
+    "dispatcher": "coordinator",
+    "execution": "capability/workflow/queue target selected by contract",
+    "verification": "browser-verifier or independent verifier",
+    "memory": "runtime evidence substrate",
+    "canonical_promotion": "authorized Git lineage"
+  },
+  "rules": [
+    "time_trigger != execution_authority",
+    "scheduled_tick != permission_to_promote",
+    "retry != duplicate_permission",
+    "scheduler_failure != coordinator_authority_expansion",
+    "preview_cron != production_cron"
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "schema": "VISUAL_COMPETENCY_MATRIX/1",
+  "matrix_id": "visual-specialist-tracks-v1",
+  "principle": "Shared foundations do not erase specialization. Problems select competencies; validated principles may transfer without transferring occupational identity or unrelated authority.",
+  "shared_foundations": [
+    "evidence-discipline",
+    "state-fidelity",
+    "measurement",
+    "verification",
+    "recovery",
+    "authority-preservation",
+    "provenance"
+  ],
+  "tracks": {
+    "game-emulation": {
+      "competencies": [
+        "game-loop-reasoning",
+        "frame-pacing",
+        "input-latency",
+        "simulation-timing",
+        "emulation-state",
+        "runtime-performance"
+      ],
+      "non_claims": [
+        "general-software-architecture-mastery",
+        "ui-design-mastery",
+        "graphics-pipeline-mastery"
+      ]
+    },
+    "graphics-rendering": {
+      "competencies": [
+        "frame-composition",
+        "scaling",
+        "reconstruction",
+        "artifact-analysis",
+        "image-quality",
+        "gpu-oriented-reasoning",
+        "temporal-continuity"
+      ],
+      "non_claims": [
+        "interaction-design-mastery",
+        "distributed-systems-mastery",
+        "emulator-correctness"
+      ]
+    },
+    "ui-interaction": {
+      "competencies": [
+        "information-hierarchy",
+        "spatial-layout",
+        "pointer-touch-keyboard",
+        "focus",
+        "menus-overlays",
+        "responsive-behavior",
+        "accessibility",
+        "perceived-responsiveness"
+      ],
+      "non_claims": [
+        "game-loop-mastery",
+        "shader-mastery",
+        "backend-architecture-mastery"
+      ]
+    },
+    "software-systems": {
+      "competencies": [
+        "state-management",
+        "data-modeling",
+        "apis",
+        "concurrency",
+        "persistence",
+        "security",
+        "testing",
+        "failure-recovery",
+        "architecture"
+      ],
+      "non_claims": [
+        "visual-quality-mastery",
+        "interaction-design-mastery",
+        "frame-pacing-mastery"
+      ]
+    },
+    "web-runtime": {
+      "competencies": [
+        "browser-runtime",
+        "dom-semantics",
+        "network-boundaries",
+        "responsive-surface",
+        "session-state",
+        "deployment-observation"
+      ],
+      "non_claims": [
+        "native-game-runtime-mastery",
+        "graphics-pipeline-mastery"
+      ]
+    },
+    "visual-design": {
+      "competencies": [
+        "composition",
+        "hierarchy",
+        "contrast",
+        "density",
+        "readability",
+        "visual-language",
+        "perceptual-communication"
+      ],
+      "non_claims": [
+        "implementation-correctness",
+        "runtime-correctness",
+        "authority-to-execute"
+      ]
+    }
+  },
+  "composition": {
+    "input": [
+      "problem_properties",
+      "environment",
+      "authority",
+      "evidence_requirements"
+    ],
+    "process": [
+      "infer_required_competencies",
+      "select_minimum_compatible_traits",
+      "preserve_specialist_boundaries",
+      "execute",
+      "verify",
+      "score_composition"
+    ],
+    "output": [
+      "compiled_competency_set",
+      "uncovered_requirements",
+      "evidence_plan"
+    ],
+    "rule": "Prefer the smallest competency composition that covers the problem; add specialists only when evidence shows a gap."
+  },
+  "transfer": {
+    "states": [
+      "OBSERVED",
+      "HYPOTHESIZED",
+      "DESTINATION_TESTING",
+      "VALIDATED_FOR_DESTINATION",
+      "REJECTED_FOR_DESTINATION"
+    ],
+    "required": [
+      "source_track",
+      "source_evidence",
+      "candidate_principle",
+      "destination_track",
+      "destination_baseline",
+      "destination_test",
+      "measured_effect",
+      "constraints"
+    ],
+    "rules": [
+      "transfer_principle_not_identity",
+      "transfer_never_expands_authority",
+      "destination_validation_required",
+      "failed_transfer_is_retained_as_evidence",
+      "domain_specific_constraints_survive_abstraction"
+    ]
+  },
+  "examples": [
+    {
+      "problem": "animated contextual menu near viewport edge",
+      "compose": [
+        "ui-interaction",
+        "graphics-rendering",
+        "web-runtime"
+      ],
+      "optional_transfer": [
+        "frame-pacing->animation-pacing"
+      ]
+    },
+    {
+      "problem": "emulator framebuffer scaling artifact",
+      "compose": [
+        "game-emulation",
+        "graphics-rendering"
+      ],
+      "optional_transfer": [
+        "responsive-scaling<-visual-reconstruction"
+      ]
+    },
+    {
+      "problem": "adaptive site object with verified generated action",
+      "compose": [
+        "software-systems",
+        "ui-interaction",
+        "web-runtime",
+        "visual-design"
+      ],
+      "optional_transfer": [
+        "input-latency->perceived-responsiveness"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "schema": "VISUAL_ANALYSIS_REGIMEN/1",
+  "regimen_id": "visual-analysis-umbrella-v1",
+  "purpose": "Cross-domain training and analysis for anything whose correctness, usability, communication, or quality depends materially on visual or interactive presentation.",
+  "scope": {
+    "includes": [
+      "ui",
+      "gui",
+      "layout",
+      "rendering",
+      "animation",
+      "pointer-and-touch-interaction",
+      "menus-and-overlays",
+      "responsive-design",
+      "visual-state",
+      "accessibility",
+      "information-visualization",
+      "image-and-frame-quality",
+      "emulation-derived-perceptual-lessons",
+      "object-spatial-relations",
+      "visual-evidence"
+    ],
+    "excludes": [
+      "domain-specific-authority-transfer",
+      "automatic-canonical-promotion",
+      "assuming-perceptual-quality-proves-computational-success"
+    ]
+  },
+  "principle": "Compact machinery may produce rich visual manifestation, but visible state must remain faithful to verified system state.",
+  "analysis_axes": [
+    {
+      "id": "semantic",
+      "asks": [
+        "What is being represented?",
+        "Can the user infer object, state, relationship and available action?"
+      ]
+    },
+    {
+      "id": "spatial",
+      "asks": [
+        "Where is it relative to relevant objects?",
+        "Does placement survive resize, movement, locking, collision and edge conditions?"
+      ]
+    },
+    {
+      "id": "temporal",
+      "asks": [
+        "What changes over time?",
+        "Are acknowledgement, motion, visual completion and interactive readiness distinguishable?"
+      ]
+    },
+    {
+      "id": "interaction",
+      "asks": [
+        "Can pointer, keyboard and touch paths reach the intended action reliably?",
+        "Are target and focus transitions coherent?"
+      ]
+    },
+    {
+      "id": "perceptual",
+      "asks": [
+        "Is important change noticeable without unnecessary stimulation?",
+        "Does motion/contrast/scale improve comprehension rather than merely decorate?"
+      ]
+    },
+    {
+      "id": "rendering",
+      "asks": [
+        "Are frame pacing, scaling, sharpness, continuity and artifact behavior appropriate to the surface?"
+      ]
+    },
+    {
+      "id": "responsive",
+      "asks": [
+        "Does meaning and function survive viewport, density and layout changes?"
+      ]
+    },
+    {
+      "id": "accessibility",
+      "asks": [
+        "Are semantics, focus, names, contrast-relevant evidence and non-pointer routes preserved?"
+      ]
+    },
+    {
+      "id": "state_fidelity",
+      "asks": [
+        "Does visible state correspond to observed computational state?",
+        "Could the interface falsely imply success, failure, readiness or freshness?"
+      ]
+    },
+    {
+      "id": "efficiency",
+      "asks": [
+        "What visual richness is obtained per unit of persistent complexity, render cost, latency and human effort?"
+      ]
+    },
+    {
+      "id": "recovery",
+      "asks": [
+        "What happens when geometry, timing, rendering or state assumptions become stale?",
+        "Can the system safely re-resolve and verify?"
+      ]
+    }
+  ],
+  "cycle": [
+    "OBSERVE",
+    "DECOMPOSE",
+    "MEASURE",
+    "PERTURB",
+    "COMPARE",
+    "DIAGNOSE",
+    "REPAIR",
+    "RENDER",
+    "INTERACT",
+    "VERIFY",
+    "DISTILL",
+    "RETEST"
+  ],
+  "evidence": {
+    "retain_raw": [
+      "viewport",
+      "bounds",
+      "object-relations",
+      "input-events",
+      "timestamps",
+      "state-transitions",
+      "render-observations",
+      "expected-vs-observed",
+      "resource-context"
+    ],
+    "distinguish": [
+      "synthetic",
+      "runtime",
+      "browser-observed",
+      "human-perceptual",
+      "inferred"
+    ],
+    "rules": [
+      "visual_success_does_not_prove_task_success",
+      "task_success_does_not_prove_visual_quality",
+      "animation_complete_does_not_prove_interactive_ready",
+      "missing_visual_evidence_is_not_failure",
+      "perception_claims_require_observation_or_explicit_human_feedback"
+    ]
+  },
+  "cross_domain_transfer": {
+    "sources": [
+      "ui-gauntlets",
+      "spatial-interaction",
+      "browser-verification",
+      "rendering-tests",
+      "emulation-training",
+      "responsive-tests",
+      "accessibility-tests"
+    ],
+    "process": [
+      "extract_candidate_principle",
+      "record_source_and_context",
+      "state_transfer_hypothesis",
+      "test_in_destination_domain",
+      "compare_against_destination_baseline",
+      "retain_or_reject"
+    ],
+    "prohibition": "No source-domain success automatically promotes a destination-domain rule."
+  },
+  "scoring": [
+    "task_correctness",
+    "state_fidelity",
+    "visual_comprehension",
+    "interaction_correctness",
+    "spatial_correctness",
+    "temporal_correctness",
+    "render_quality",
+    "responsive_correctness",
+    "accessibility_preservation",
+    "resource_efficiency",
+    "recovery_accuracy",
+    "false_success",
+    "false_failure",
+    "human_correction"
+  ],
+  "promotion": {
+    "minimum_repeated_evidence": 5,
+    "requires": [
+      "destination-domain-validation",
+      "measurable-benefit",
+      "no-authority-regression",
+      "no-false-success-increase",
+      "provenance-preserved"
+    ],
+    "self_promotion": false
+  },
+  "specialist_competency_model": {
+    "matrix_ref": "shared/training/visual-competency-matrix-v1.json",
+    "rule": "The umbrella coordinates analysis and transfer; specialist tracks retain distinct competencies and success criteria.",
+    "selection": "problem -> required competencies -> minimum compatible composition -> execution -> evidence -> composition score",
+    "prohibitions": [
+      "generic_visual_expert_assumption",
+      "source_specialty_inferred_from_transferred_principle",
+      "authority_inferred_from_competency"
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "schema": "WORKER_ENHANCEMENT_PROFILE/1",
+  "baseline": [
+    "validate_envelope",
+    "preserve_correlation",
+    "enforce_authority",
+    "classify_observation",
+    "emit_evidence"
+  ],
+  "roles": {
+    "coordinator": {
+      "learn": [
+        "infer_required_capability",
+        "route_without_execution_claim",
+        "wait_for_confirmation",
+        "reconcile_boundary_status"
+      ],
+      "avoid": [
+        "doing_specialist_work",
+        "treating_timeout_as_failure"
+      ]
+    },
+    "internal_capability": {
+      "learn": [
+        "validate_capability_input",
+        "execute_smallest_valid_operation",
+        "validate_output",
+        "return_unsupported_cleanly"
+      ],
+      "avoid": [
+        "routing_beyond_scope",
+        "authority_inference_from_payload"
+      ]
+    },
+    "browser_verifier": {
+      "learn": [
+        "separate_claim_from_observation",
+        "interact_then_assert",
+        "capture_visual_evidence",
+        "return_unresolved_when_surface_absent"
+      ],
+      "avoid": [
+        "pass_without_observation",
+        "mutation"
+      ]
+    },
+    "lab": {
+      "learn": [
+        "form_falsifiable_probe",
+        "change_one_variable",
+        "record_failed_route",
+        "compare_baseline"
+      ],
+      "avoid": [
+        "promoting_own_result",
+        "hiding_failed_source_with_enhancement"
+      ]
+    },
+    "production_site": {
+      "learn": [
+        "validate_request",
+        "resolve_session_authority",
+        "route_to_capability",
+        "validate_response"
+      ],
+      "avoid": [
+        "business_logic_sprawl",
+        "implicit_privilege"
+      ]
+    }
+  },
+  "promotion": {
+    "minimum_repetitions": 5,
+    "requirements": [
+      "measurable_error_reduction",
+      "no_authority_regression",
+      "no_false_success_increase",
+      "evidence_preserved"
+    ],
+    "states": [
+      "BASELINE",
+      "TRAINING",
+      "IMPROVED_CANDIDATE",
+      "GAUNTLET_VALIDATED",
+      "PREFERRED"
+    ]
+  }
+}

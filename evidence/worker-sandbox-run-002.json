@@ -1,0 +1,32 @@
+{
+  "schema": "WORKER_SANDBOX_RESULT/1",
+  "run": "sandbox-002",
+  "status": "PASS",
+  "scope": "deterministic protocol sandbox; not live Cloudflare runtime",
+  "workers": [
+    "coordinator",
+    "internal-capability",
+    "browser-verifier",
+    "lab",
+    "production-site"
+  ],
+  "checks": {
+    "confirmation": true,
+    "cooperation": true,
+    "authority": true,
+    "false_negative_guard": true,
+    "timing_samples": 7,
+    "mean_ms": 25
+  },
+  "observations": [
+    "all five roles accept correlated RECEIVED state",
+    "HELP/ASK/VERIFY chain preserves authority ceiling",
+    "delayed observation remains NOT_YET_OBSERVED rather than FAILED"
+  ],
+  "limitations": [
+    "no live Cloudflare execution observed in this run",
+    "GitHub workflow run for latest commit not observed at immediate recheck",
+    "synthetic timing samples validate aggregation mechanics, not production latency"
+  ],
+  "next": "Collect live route timing and confirmation events before tuning learned windows."
+}

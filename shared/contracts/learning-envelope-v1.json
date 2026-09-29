@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "principle": "Experience may modify operational state only inside an authorized learning envelope. Experience may propose canonical logic changes; it cannot promote them.",
+  "runtime_state": {
+    "may_update": [
+      "task history",
+      "verified outcome counters",
+      "latency and retry statistics",
+      "bounded routing preferences",
+      "capability health",
+      "failure classifications",
+      "evidence references"
+    ],
+    "must_preserve": ["task_id", "worker_role", "capability_id", "verification_state", "provenance", "timestamp"]
+  },
+  "canonical_changes": {
+    "proposal_allowed": true,
+    "self_promotion_allowed": false,
+    "requires": ["replay", "adversarial test", "independent verification", "authorized promotion"]
+  },
+  "invariants": [
+    "observation != truth",
+    "frequency != authorization",
+    "learning != modification",
+    "model_output != verified_fact",
+    "runtime_state != canonical_logic",
+    "successful_execution != promoted_method"
+  ]
+}

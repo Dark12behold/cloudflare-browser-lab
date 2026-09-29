@@ -1,0 +1,76 @@
+{
+  "schema": "TOOLKIT_PROFILE_SET/1",
+  "profiles": {
+    "coordinator": {
+      "include": [
+        "contract.validate",
+        "authority.check",
+        "observation.classify",
+        "work.profile.compile",
+        "toolkit.resolve",
+        "evidence.packet.build"
+      ],
+      "deny": [
+        "popup.place"
+      ]
+    },
+    "internal-capability": {
+      "include": [
+        "contract.validate",
+        "authority.check",
+        "observation.classify",
+        "evidence.packet.build"
+      ],
+      "conditional": [
+        "popup.place",
+        "pointer.path.measure",
+        "interaction.timeline.verify"
+      ]
+    },
+    "browser-verifier": {
+      "include": [
+        "contract.validate",
+        "observation.classify",
+        "popup.place",
+        "pointer.path.measure",
+        "interaction.timeline.verify",
+        "evidence.packet.build"
+      ]
+    },
+    "lab": {
+      "include": [
+        "contract.validate",
+        "observation.classify",
+        "popup.place",
+        "pointer.path.measure",
+        "interaction.timeline.verify",
+        "work.profile.compile",
+        "evidence.packet.build"
+      ],
+      "experimental_generation": true
+    },
+    "production-site": {
+      "include": [
+        "contract.validate",
+        "authority.check",
+        "evidence.packet.build"
+      ],
+      "conditional": [
+        "popup.place",
+        "interaction.timeline.verify"
+      ],
+      "deny": [
+        "work.profile.compile",
+        "toolkit.resolve"
+      ]
+    }
+  },
+  "resolution_order": [
+    "work_profile_requirements",
+    "worker_profile_capabilities",
+    "environment_compatibility",
+    "current_authority",
+    "tool_maturity",
+    "minimum_toolset"
+  ]
+}
