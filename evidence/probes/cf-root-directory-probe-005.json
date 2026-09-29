@@ -1,0 +1,8 @@
+{
+  "schema": "CF_ROOT_PROBE/1",
+  "purpose": "Retrigger Cloudflare after Worker root-directory configuration change.",
+  "target": "lab",
+  "expected_root": "workers/labs",
+  "expected_route": "/ui/browser",
+  "mutation": "evidence-only"
+}
