@@ -1,0 +1,8 @@
+{
+  "schema": "CF_PREVIEW_PROBE/1",
+  "purpose": "Force a fresh Git-to-Cloudflare observation after user-side preview/workload changes.",
+  "target": "lab",
+  "expected_route": "/ui/browser",
+  "mutation": "evidence-only",
+  "authority": "experimental-branch-only"
+}
