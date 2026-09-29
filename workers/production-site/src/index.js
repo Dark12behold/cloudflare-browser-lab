@@ -1,10 +1,5 @@
-export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
-    if (url.pathname === "/health") {
-      const capability = await env.CAPABILITIES.health();
-      return Response.json({ worker: "production-site", role: "public-product-surface", status: "ok", dependencies: { internal_capability: capability } });
-    }
-    return env.ASSETS.fetch(request);
-  }
-};
+const ack=(task_id,state,extra={})=>({contract:"CONFIRMATION/1",task_id,state,worker:"production-site",at:new Date().toISOString(),...extra});
+export default{async fetch(request,env){const url=new URL(request.url);
+if(url.pathname==="/health"){const capability=await env.CAPABILITIES.health();return Response.json({worker:"production-site",role:"public-product-surface",status:"ok",dependencies:{internal_capability:capability},confirmation:"CONFIRMATION/1"});}
+if(url.pathname==="/confirm"&&request.method==="POST"){const v=await request.json().catch(()=>null);if(!v?.task_id)return Response.json(ack("unknown","BLOCKED",{reason:"missing_task_id"}),{status:400});return Response.json(ack(v.task_id,"RECEIVED",{next:"validate_request",expected_event:"ACCEPTED",authority_expanded:false}));}
+return env.ASSETS.fetch(request);}};
