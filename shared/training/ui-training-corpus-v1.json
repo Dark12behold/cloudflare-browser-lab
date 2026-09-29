@@ -1,0 +1,67 @@
+{
+  "schema": "UI_TRAINING_CORPUS/1",
+  "purpose": "Reproducible GUI-function training before external visual references are introduced.",
+  "source_policy": {
+    "phase_1": "seeded internal primitives and constraints",
+    "phase_2": "deliberate mutations of successful builds",
+    "phase_3": "curated external references only as comparative evidence, not copy targets"
+  },
+  "primitives": [
+    "button",
+    "card",
+    "dialog",
+    "tabs",
+    "menu",
+    "notification",
+    "settings-row",
+    "window-frame",
+    "environment-switcher",
+    "object-tile"
+  ],
+  "functions": [
+    "open",
+    "close",
+    "select",
+    "toggle",
+    "submit",
+    "cancel",
+    "navigate",
+    "reorder",
+    "resize",
+    "switch-environment",
+    "acknowledge"
+  ],
+  "verification": [
+    "semantic_role",
+    "required_states",
+    "keyboard",
+    "focus",
+    "responsive",
+    "overflow",
+    "accessible_name",
+    "interaction_result",
+    "authority_preserved"
+  ],
+  "mutations": [
+    "missing_focus",
+    "overflow_320",
+    "disabled_still_clickable",
+    "dialog_no_escape",
+    "ambiguous_label",
+    "state_not_persisted",
+    "duplicate_action",
+    "layout_shift"
+  ],
+  "metrics": [
+    "task_success",
+    "visual_structure",
+    "interaction_correctness",
+    "accessibility",
+    "responsive_correctness",
+    "repair_accuracy",
+    "handoffs",
+    "latency",
+    "false_success",
+    "human_intervention"
+  ]
+}
