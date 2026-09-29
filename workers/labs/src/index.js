@@ -1,8 +1,13 @@
 const ack=(task_id,state,extra={})=>({contract:"CONFIRMATION/1",task_id,state,worker:"lab",at:new Date().toISOString(),...extra});
+const UI={kinds:["button","card","dialog","tabs","menu","notification","settings-row","window-frame","environment-switcher","object-tile"],states:["default","hover","focus","disabled","loading","error"],widths:[320,375,768,1024,1440],density:["compact","comfortable"],hierarchy:["flat","grouped","nested"]};
+function rng(seed){let x=(Number(seed)||1)>>>0;return()=>((x=(1664525*x+1013904223)>>>0)/4294967296);}
+function pick(r,a){return a[Math.floor(r()*a.length)]}
+function uiExercise(seed=1){const r=rng(seed);const kind=pick(r,UI.kinds);return{contract:"UI_EXERCISE/1",seed:Number(seed),kind,requirements:{viewport:pick(r,UI.widths),density:pick(r,UI.density),hierarchy:pick(r,UI.hierarchy),states:[...new Set(["default","focus",pick(r,UI.states),pick(r,UI.states)])],keyboard:true,responsive:true,accessible_name:true},success:["renders_required_object","all_required_states_represented","keyboard_path_exists","narrow_viewport_does_not_overflow","no_unrequested_authority"],authority:["experimental-ui-build"],denied:["production-mutation","promotion"]};}
 function makeTick(controller){return{event:"chain.tick",source:"lab",scheduled_time:new Date(controller.scheduledTime).toISOString(),cron:controller.cron,authority:["schedule","emit-heartbeat"],denied:["promote","production-mutation","authority-expansion"]};}
 async function runScheduledTick(controller){const tick=makeTick(controller);console.log(JSON.stringify(tick));return tick;}
 export default{async fetch(request){const url=new URL(request.url);
-if(url.pathname==="/health")return Response.json({worker:"lab",role:"lab-host",scheduler:"configured",status:"ok",confirmation:"CONFIRMATION/1"});
+if(url.pathname==="/health")return Response.json({worker:"lab",role:"lab-host",scheduler:"configured",status:"ok",confirmation:"CONFIRMATION/1",capabilities:["ui.exercise.generate"]});
+if(url.pathname==="/ui/exercise"){const seed=url.searchParams.get("seed")||"1";return Response.json(uiExercise(seed));}
 if(url.pathname==="/confirm"&&request.method==="POST"){const v=await request.json().catch(()=>null);if(!v?.task_id)return Response.json(ack("unknown","BLOCKED",{reason:"missing_task_id"}),{status:400});return Response.json(ack(v.task_id,"RECEIVED",{next:"experiment",expected_event:"STARTED"}));}
 if(url.pathname==="/experiment"&&request.method==="POST"){const v=await request.json().catch(()=>null);return Response.json(ack(v?.task_id??"unknown","STARTED",{experimental_only:true,promotion_authority:false,next:"emit_evidence"}));}
 return Response.json({worker:"lab",role:"lab-host",status:"ready",authority:"experimental-only",scheduler:"chain-heartbeat"});},async scheduled(controller,env,ctx){ctx.waitUntil(runScheduledTick(controller));}};
