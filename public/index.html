@@ -1,9 +1,31 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cloudflare Browser Lab</title><link rel="stylesheet" href="./cake-welcome.css"></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b0d">
+<title>Metatextum</title>
+<meta name="description" content="Metatextum is taking shape. Come back soon.">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;background:#090b0d}
+body{overflow:hidden;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.coming-soon{position:relative;width:100%;height:100svh;min-height:100%;background:#090b0d}
+.coming-soon img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-aspect-ratio:4/5){
+ .coming-soon img{object-position:62% center}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
 <body>
-<main class="cake-welcome-demo" aria-label="Welcome demo">
-<button class="cake-button" id="cakeButton" type="button" aria-label="Celebrate and welcome"><span class="candles" aria-hidden="true"><i></i><i></i><i></i></span><span class="cake-top" aria-hidden="true"></span><span class="cake-layer" aria-hidden="true"></span><span class="cake-plate" aria-hidden="true"></span><span class="sr-only">Welcome</span></button>
+<main class="coming-soon">
+  <img src="/assets/metatextum-coming-soon.webp" width="1536" height="864" alt="" decoding="async" fetchpriority="high">
+  <div class="sr-only">
+    <h1>Metatextum</h1>
+    <p>Something is taking shape. Come back soon.</p>
+  </div>
 </main>
-<div id="celebrationLayer" class="celebration-layer" aria-hidden="true"></div><div id="welcomeMessage" class="welcome-message" role="status" aria-live="polite">Welcome!</div>
-<script src="./cake-welcome.js"></script></body></html>
+</body>
+</html>
