@@ -1,0 +1,51 @@
+{
+  "$id": "topology-reasoning-v1",
+  "purpose": "Make topology observation part of every worker's reasoning without granting mutation or promotion authority.",
+  "reasoning_loop": [
+    "observe_local_movement",
+    "classify_boundary",
+    "record_route_and_binding",
+    "compare_expected_vs_actual",
+    "identify_possible_compression_or_recovery",
+    "emit_evidence",
+    "never_self_promote"
+  ],
+  "observe": [
+    "caller_or_trigger",
+    "workload_class",
+    "current_worker_role",
+    "capability_invoked",
+    "binding_or_transport",
+    "handoff_target",
+    "state_read_or_write",
+    "environment",
+    "latency_when_available",
+    "retry_or_recovery",
+    "verification_route",
+    "outcome"
+  ],
+  "boundary_classes": [
+    "direct_control",
+    "indirect_control",
+    "direct_observation",
+    "indirect_observation",
+    "inferred_behavior"
+  ],
+  "candidate_questions": [
+    "Can a handoff be eliminated without weakening guarantees?",
+    "Should this remain local, become RPC, queue, workflow, or durable state?",
+    "Are capabilities repeatedly colocated?",
+    "Did the selected environment fit the workload?",
+    "Did recovery outperform the preferred route?",
+    "What movement is observed versus merely inferred?"
+  ],
+  "rules": [
+    "observation_is_not_truth",
+    "inference_requires_evidence",
+    "movement_observation_does_not_expand_authority",
+    "worker_may_propose_but_not_promote",
+    "preserve_correlation_and_provenance",
+    "do_not_add_infrastructure_without_measured_need"
+  ],
+  "output": "TOPOLOGY_OBSERVATION/1"
+}
